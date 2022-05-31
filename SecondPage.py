@@ -209,10 +209,24 @@ def test23():
     assert checkboxfemalecheck == "registration-step1__form-radio-button-label checked"
 
 def test24():
-    button = browser.find_element(By.CSS_SELECTOR, value="nextStep")
-    button.click()
+    button = browser.find_element(By.CSS_SELECTOR, value="#nextStep")
+    browser.execute_script('return arguments[0].scrollIntoView(true);', button)
+    highlight(button)
 
-    time.sleep(15)
+    birthdate = browser.find_element(By.CSS_SELECTOR, value="#birthDate")
+    highlight(birthdate)
+    for i in range(8):
+        birthdate.send_keys('\uE003')
+    birthdate.send_keys("32-13-2023")
+    button.click()
+    first_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[4]/p[1]")
+    first_input_error_get_text = first_input_error.text
+    assert first_input_error_get_text == "Неверный формат поля «Дата Рождения»"
+
+
+
+
+    time.sleep(3)
     browser.quit()
 
 if __name__ == "__main__":
