@@ -212,22 +212,23 @@ def test24():
     button = browser.find_element(By.CSS_SELECTOR, value="#nextStep")
     browser.execute_script('return arguments[0].scrollIntoView(true);', button)
     highlight(button)
-
     birthdate = browser.find_element(By.CSS_SELECTOR, value="#birthDate")
     highlight(birthdate)
     for i in range(8):
         birthdate.send_keys('\uE003')
     birthdate.send_keys("32-13-2023")
     button.click()
-    first_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[4]/p[1]")
-    first_input_error_get_text = first_input_error.text
-    assert first_input_error_get_text == "Неверный формат поля «Дата Рождения»"
+    birthdate_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[4]/p[1]")
+    birthdate_input_error_get_text = birthdate_input_error.text
+    phone_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[6]/p")
+    phone_input_error_get_text = phone_input_error.text
+    assert birthdate_input_error_get_text == "Неверный формат поля «Дата Рождения»"
+    assert phone_input_error_get_text == "Поле «Номер телефона» обязательно для заполнения"
 
 
+def test25():
 
 
-    time.sleep(3)
-    browser.quit()
 
 if __name__ == "__main__":
     test1()
@@ -253,5 +254,6 @@ if __name__ == "__main__":
     test21()
     test22()
     test23()
+    test24()
 
 #Pytest SecondPage_Lastname.py
