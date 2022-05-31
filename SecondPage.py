@@ -74,9 +74,9 @@ def test6():
 def test7():
     lastname = browser.find_element(By.ID, 'lastName')
     highlight(lastname)
-    lastname.send_keys("Петров")
+    lastname.send_keys("Игнатенко")
     lastname_check = lastname.get_attribute("value")
-    assert lastname_check == "Петров", "Если не Петров тогда все сломалось"
+    assert lastname_check == "Игнатенко", "Если не Игнатенко тогда все сломалось"
 
 def test8():
     firstname = browser.find_element(By.CSS_SELECTOR, value="#firstname.registration-first__input")
@@ -132,9 +132,9 @@ def test13():
 def test14():
     firstname = browser.find_element(By.CSS_SELECTOR, value="#firstname.registration-first__input")
     highlight(firstname)
-    firstname.send_keys("Петр")
+    firstname.send_keys("Семен")
     firstname_check = firstname.get_attribute("value")
-    assert firstname_check == "Петр", "Если не Петр тогда все сломалось"
+    assert firstname_check == "Семен", "Если не Семен тогда все сломалось"
 
 def test15():
     middlename = browser.find_element(By.CSS_SELECTOR, value="#middleName.registration-first__input")
@@ -243,6 +243,14 @@ def test25():
     birthdate_input_error_get_text = birthdate_input_error.text
     assert birthdate_input_error_get_text == "Неверный формат поля «Дата Рождения»"
 
+def test26():
+    button = browser.find_element(By.CSS_SELECTOR, value="#nextStep")
+    birthdate = browser.find_element(By.CSS_SELECTOR, value="#birthDate")
+    highlight(birthdate)
+    for i in range(8):
+        birthdate.send_keys('\uE003')
+    birthdate.send_keys("01-01-2000")
+    button.click()
 
 if __name__ == "__main__":
     test1()
@@ -270,5 +278,6 @@ if __name__ == "__main__":
     test23()
     test24()
     test25()
+    test26()
 
-#Pytest SecondPage_Lastname.py
+#Pytest SecondPage.py
