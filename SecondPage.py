@@ -209,37 +209,10 @@ def test23():
     assert checkboxfemalecheck == "registration-step1__form-radio-button-label checked"
 
 def test24():
+    button = browser.find_element(By.CSS_SELECTOR, value="nextStep")
+    button.click()
 
-    birthdate = browser.find_element(By.CSS_SELECTOR, value="#birthDate")
-    highlight(birthdate)
-    for i in range(8):
-        birthdate.send_keys('\uE003')
-    birthdate.send_keys("1")
-    for i in range(1):
-        birthdate.send_keys('\uE003')
-
-    button = browser.find_element(By.CSS_SELECTOR, value="#nextStep")
-    browser.execute_script('return arguments[0].scrollIntoView(true);', button)
-    highlight(button)
-
-    phone = browser.find_element(By.CSS_SELECTOR, value="#phone")
-    highlight(phone)
-    for i in range(10):
-        phone.send_keys('\uE003')
-    phone.send_keys(" ")
-    for i in range(10):
-        birthdate.send_keys('\uE003')
-    time.sleep(1)
-
-    email = browser.find_element(By.CSS_SELECTOR, value="#email")
-    highlight(email)
-    for i in range(1):
-        email.send_keys('\uE003')
-    email.send_keys("1")
-    for i in range(1):
-        birthdate.send_keys('\uE003')
-
-    time.sleep(5)
+    time.sleep(15)
     browser.quit()
 
 if __name__ == "__main__":
