@@ -251,6 +251,16 @@ def test26():
         birthdate.send_keys('\uE003')
     birthdate.send_keys("01-01-2000")
     button.click()
+    email_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[7]/p")
+    email_input_error_get_text = email_input_error.text
+    assert email_input_error_get_text == "Поле «Email» обязательно для заполнения"
+
+def test27():
+    email = browser.find_element(By.CSS_SELECTOR, value="#email")
+    email.send_keys("proverka")
+    email_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[7]/p")
+    email_input_error_get_text = email_input_error.text
+    assert email_input_error_get_text == "Введите корректный email"
 
 if __name__ == "__main__":
     test1()
@@ -279,5 +289,6 @@ if __name__ == "__main__":
     test24()
     test25()
     test26()
+    test27()
 
 #Pytest SecondPage.py
