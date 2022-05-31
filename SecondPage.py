@@ -227,7 +227,21 @@ def test24():
 
 
 def test25():
-
+    button = browser.find_element(By.CSS_SELECTOR, value="#nextStep")
+    birthdate = browser.find_element(By.CSS_SELECTOR, value="#birthDate")
+    highlight(birthdate)
+    for i in range(8):
+        birthdate.send_keys('\uE003')
+    birthdate.send_keys("00-00-0000")
+    button.click()
+    phone = browser.find_element(By.CSS_SELECTOR, value="#phone")
+    for i in range(10):
+        phone.send_keys('\uE003')
+    phone.send_keys("9998887766")
+    button.click()
+    birthdate_input_error = browser.find_element(By.XPATH, value="//*[@id='__next']/section/div[4]/div[4]/p[1]")
+    birthdate_input_error_get_text = birthdate_input_error.text
+    assert birthdate_input_error_get_text == "Неверный формат поля «Дата Рождения»"
 
 
 if __name__ == "__main__":
@@ -255,5 +269,6 @@ if __name__ == "__main__":
     test22()
     test23()
     test24()
+    test25()
 
 #Pytest SecondPage_Lastname.py
