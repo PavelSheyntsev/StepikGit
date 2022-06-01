@@ -1,11 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+from faker import Faker
 
 browser = webdriver.Chrome()
 browser.maximize_window()
 browser.get("https://rc.credit2day.ru/registration/main-info")
 browser.implicitly_wait(5)
+fake = Faker('ru_RU')
 
 def highlight(element):
     driver = element._parent
@@ -74,9 +76,11 @@ def test6():
 def test7():
     lastname = browser.find_element(By.ID, 'lastName')
     highlight(lastname)
-    lastname.send_keys("Игнатенко")
+    for _ in range(1):
+        lastnamelist = [fake.last_name()]
+    lastname.send_keys(lastnamelist)
     lastname_check = lastname.get_attribute("value")
-    assert lastname_check == "Игнатенко", "Если не Игнатенко тогда все сломалось"
+    assert lastname_check == lastname.get_attribute("value")
 
 def test8():
     firstname = browser.find_element(By.CSS_SELECTOR, value="#firstname.registration-first__input")
@@ -132,9 +136,11 @@ def test13():
 def test14():
     firstname = browser.find_element(By.CSS_SELECTOR, value="#firstname.registration-first__input")
     highlight(firstname)
-    firstname.send_keys("Семен")
+    for _ in range(1):
+        firstnamelist = [fake.first_name()]
+    firstname.send_keys(firstnamelist)
     firstname_check = firstname.get_attribute("value")
-    assert firstname_check == "Семен", "Если не Семен тогда все сломалось"
+    assert firstname_check == firstname.get_attribute("value")
 
 def test15():
     middlename = browser.find_element(By.CSS_SELECTOR, value="#middleName.registration-first__input")
@@ -190,9 +196,11 @@ def test20():
 def test21():
     middlename = browser.find_element(By.CSS_SELECTOR, value="#middleName.registration-first__input")
     highlight(middlename)
-    middlename.send_keys("Петрович")
+    for _ in range(1):
+        middlenamelist = [fake.middle_name()]
+    middlename.send_keys(middlenamelist)
     middlename_check = middlename.get_attribute("value")
-    assert middlename_check == "Петрович", "Если не Петрович тогда все сломалось"
+    assert middlename_check == middlename.get_attribute("value")
 
 def test22():
     checkboxfemale = browser.find_element(By.XPATH, value="//*[@id='female']/label")
@@ -262,6 +270,12 @@ def test27():
     email_input_error_get_text = email_input_error.text
     assert email_input_error_get_text == "Введите корректный email"
 
+def test28():
+    email = browser.find_element(By.CSS_SELECTOR, value="#email")
+    email.send_keys("@mail.ru")
+    email_check = email.get_attribute("value")
+    assert email_check == "proverka@mail.ru"
+
 if __name__ == "__main__":
     test1()
     test2()
@@ -290,5 +304,6 @@ if __name__ == "__main__":
     test25()
     test26()
     test27()
+    test28()
 
 #Pytest SecondPage.py
