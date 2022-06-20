@@ -7,9 +7,12 @@ try:
     browser.maximize_window()
     browser.get("https://parsinger.ru/selenium/3/3.html")
 
-    p = browser.find_elements(By.TAG_NAME, 'p').text
-    print(p)
+    #каждое число
+    a = browser.find_elements(By.TAG_NAME, "p")
+    a = [int(x.text) for x in browser.find_elements(By.TAG_NAME, "p")]
+    print(sum(a))
+
 
 finally:
-    time.sleep(5)
+    time.sleep(1)
     browser.quit()
