@@ -10,7 +10,23 @@ try:
     browser.implicitly_wait(10)
 
     firstname = browser.find_element(By.CSS_SELECTOR, '[name=first_name]')
-    firstname.send_keys("Павел")
+    firstname.send_keys("Сергей")
+
+    lastname = browser.find_element(By.CSS_SELECTOR, '[name = last_name]')
+    lastname.send_keys("Петренко")
+
+    patronymic = browser.find_element(By.CSS_SELECTOR, '[name = patronymic]')
+    patronymic.send_keys("Иванович")
+
+    age = browser.find_element(By.CSS_SELECTOR, '[name=age]')
+    age.send_keys("30")
+
+    city = browser.find_element(By.CSS_SELECTOR, '[name = city]')
+    city.send_keys("Санкт-Петербург")
+
+    email = browser.find_element(By.CSS_SELECTOR, '[name=email]')
+    email.send_keys("12345@mail.ru")
+
 
 finally:
     time.sleep(2)
