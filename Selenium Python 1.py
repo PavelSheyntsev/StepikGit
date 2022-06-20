@@ -27,7 +27,9 @@ try:
     email = browser.find_element(By.CSS_SELECTOR, '[name=email]')
     email.send_keys("12345@mail.ru")
 
+    button = browser.find_element(By.CSS_SELECTOR, '[type=button]')
+    button.click()
 
 finally:
-    time.sleep(2)
+    time.sleep(5)
     browser.quit()
