@@ -276,6 +276,8 @@ def test28():
     email_check = email.get_attribute("value")
     assert email_check == "proverka@mail.ru"
 
+    browser.quit()
+
 if __name__ == "__main__":
     test1()
     test2()
